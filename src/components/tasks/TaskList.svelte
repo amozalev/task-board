@@ -1,6 +1,7 @@
 <script>
 	import TaskItem from './TaskItem.svelte';
 
+	export let listIdx = '';
 	export let name = '';
 	export let tasks = [];
 </script>
@@ -12,7 +13,7 @@
 	</div>
 	<div class="grid auto-rows-auto gap-y-2 my-2">
 		{#each tasks as task (task.id)}
-			<TaskItem tag={task.tag} title={task.title} />
+			<TaskItem {listIdx} {task} />
 		{/each}
 	</div>
 	<div class="column__item--cta">
