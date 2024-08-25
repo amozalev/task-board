@@ -6,17 +6,19 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-{#if editing}
-	<textarea bind:value />
-	<button
-		on:click={() => {
-			editing = false;
-			dispatch('cancelEdit', {taskTitle: value});
-		}}
-		>Close
-	</button>
-{:else}
-	<button on:click={() => (editing = true)}>
-		<slot />
-	</button>
-{/if}
+<div class="flex flex-col">
+	{#if editing}
+		<textarea class="w-full h-full" autofocus bind:value />
+		<button
+			on:click={() => {
+				editing = false;
+				dispatch('cancelEdit', { taskTitle: value });
+			}}
+			>Close
+		</button>
+	{:else}
+		<button on:click={() => (editing = true)}>
+			<slot />
+		</button>
+	{/if}
+</div>

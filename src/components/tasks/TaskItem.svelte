@@ -15,14 +15,14 @@
 	}
 </script>
 
-<div class="bg-white rounded shadow-md p-2">
+<div class="flex-col bg-white rounded shadow-md p-2">
 	<div class="flex">
 		<span class="text-xs py-0.5 p-0.5 rounded font-bold text-white mb-3 inline-block bg-blue-400">
 			{task.tag}
 		</span>
 	</div>
 	<Editing bind:value={task.title} on:cancelEdit={updateTask}>
-		<h6 class="text-sky-800 mb-3">{task.title}</h6>
+		<p class="text-sky-800 mb-3 text-left">{task.title}</p>
 	</Editing>
 	<div class="flex items-center">
 		<div class="text-zinc-500 mr-2">
