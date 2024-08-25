@@ -4,7 +4,7 @@
 </script>
 
 <section class="p-10">
-	<div class="grid grid-cols-auto-fill-260 gap-2">
+	<div class="grid grid-cols-auto-fill-260 gap-2 grid-flow-col auto-cols-260">
 		{#each $taskListStore as taskList, i (taskList.id)}
 			<TaskList listIdx={i} name={taskList.name} tasks={taskList.tasks} />
 		{/each}
