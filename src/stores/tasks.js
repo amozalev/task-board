@@ -77,22 +77,33 @@ const DEFAULT_DATA = [
 
 const createStore = () => {
 	const taskList = writable(DEFAULT_DATA);
-	const { subscribe } = taskList;
-
-	const updateTask = (task, listIdx) => {
-		const taskIdx = get(taskList)[listIdx].tasks.findIndex(({ id }) => id === task.id);
-
-		if (taskIdx > -1) {
-			taskList.update((list) => {
-				list[listIdx].tasks[taskIdx] = { ...task };
-				return list;
-			});
-		}
-	};
+	const { subscribe, update } = taskList;
 
 	return {
 		subscribe,
-		updateTask
+		updateTask: (task, listIdx) => {
+			const taskIdx = get(taskList)[listIdx].tasks.findIndex(({ id }) => id === task.id);
+
+			if (taskIdx > -1) {
+				update((list) => {
+					list[listIdx].tasks[taskIdx] = { ...task };
+					return list;
+				});
+			}
+		},
+		addList: () => {
+			update((list) => {
+				const listLen = list.length;
+				let lastId = list[listLen - 1].id;
+				list.push({
+					id: ++lastId,
+					name: 'New list',
+					tasks: []
+				});
+
+				return list;
+			});
+		}
 	};
 };
 
