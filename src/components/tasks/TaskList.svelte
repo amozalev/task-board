@@ -1,4 +1,5 @@
 <script>
+	import { taskListStore } from '../../stores/tasks.js';
 	import TaskItem from './TaskItem.svelte';
 
 	export let listIdx = '';
@@ -22,7 +23,7 @@
 			<TaskItem {listIdx} {task} />
 		{/each}
 	</div>
-	<button class="flex gap-1 items-center">
+	<button class="flex gap-1 items-center" on:click={() => taskListStore.addTask(listIdx)}>
 		<i class="fas fa-plus"></i>
 		<h4>Add card</h4>
 	</button>

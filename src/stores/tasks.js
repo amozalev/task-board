@@ -5,15 +5,15 @@ const DEFAULT_DATA = [
 		id: 1,
 		name: 'Incoming Bugs1',
 		tasks: [
-			{ id: 11, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
+			{ id: 100, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
 			{
-				id: 12,
+				id: 101,
 				tag: 'High Priority',
 				title: 'Notifications Not Sending #4'
 			},
-			{ id: 13, tag: 'Browser', title: 'Mdivtiple Select Broken' },
+			{ id: 102, tag: 'Browser', title: 'Mdivtiple Select Broken' },
 			{
-				id: 14,
+				id: 103,
 				tag: 'Browser',
 				title: 'Drag and drop issues in Chrome'
 			}
@@ -23,15 +23,15 @@ const DEFAULT_DATA = [
 		id: 2,
 		name: 'Incoming Bugs2',
 		tasks: [
-			{ id: 21, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
+			{ id: 104, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
 			{
-				id: 22,
+				id: 105,
 				tag: 'High Priority',
 				title: 'Notifications Not Sending #4'
 			},
-			{ id: 23, tag: 'Browser', title: 'Mdivtiple Select Broken' },
+			{ id: 106, tag: 'Browser', title: 'Mdivtiple Select Broken' },
 			{
-				id: 24,
+				id: 107,
 				tag: 'Browser',
 				title: 'Drag and drop issues in Chrome'
 			}
@@ -41,15 +41,15 @@ const DEFAULT_DATA = [
 		id: 3,
 		name: 'Incoming Bugs3',
 		tasks: [
-			{ id: 31, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
+			{ id: 108, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
 			{
-				id: 32,
+				id: 109,
 				tag: 'High Priority',
 				title: 'Notifications Not Sending #4'
 			},
-			{ id: 33, tag: 'Browser', title: 'Mdivtiple Select Broken' },
+			{ id: 110, tag: 'Browser', title: 'Mdivtiple Select Broken' },
 			{
-				id: 34,
+				id: 111,
 				tag: 'Browser',
 				title: 'Drag and drop issues in Chrome'
 			}
@@ -59,15 +59,15 @@ const DEFAULT_DATA = [
 		id: 4,
 		name: 'Incoming Bugs4',
 		tasks: [
-			{ id: 41, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
+			{ id: 112, tag: 'Browser', title: 'Lightbox loading issue on Safari' },
 			{
-				id: 42,
+				id: 113,
 				tag: 'High Priority',
 				title: 'Notifications Not Sending #4'
 			},
-			{ id: 43, tag: 'Browser', title: 'Mdivtiple Select Broken' },
+			{ id: 114, tag: 'Browser', title: 'Mdivtiple Select Broken' },
 			{
-				id: 44,
+				id: 115,
 				tag: 'Browser',
 				title: 'Drag and drop issues in Chrome'
 			}
@@ -99,6 +99,16 @@ const createStore = () => {
 					id: ++lastId,
 					name: 'New list',
 					tasks: []
+				});
+
+				return list;
+			});
+		},
+		addTask: (listIdx) => {
+			update((list) => {
+				list[listIdx].tasks.push({
+					id: Math.floor(Math.random() * 1000),
+					title: 'New task'
 				});
 
 				return list;
