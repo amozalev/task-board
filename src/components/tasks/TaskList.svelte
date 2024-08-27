@@ -7,7 +7,7 @@
 	export let tasks = [];
 </script>
 
-<div class="flex flex-col rounded bg-slate-200 p-2">
+<div class="flex flex-col rounded bg-slate-200 p-2 min-h-0">
 	<div class="flex justify-between items-center">
 		<span class="flex grow">
 			<h2>{name}</h2>
@@ -18,7 +18,7 @@
 			</button>
 		</span>
 	</div>
-	<div class="flex flex-col grow gap-y-2 my-2">
+	<div class="flex flex-col gap-y-2 my-2 overflow-auto min-h-0">
 		{#each tasks as task (task.id)}
 			<TaskItem {listIdx} {task} />
 		{/each}
