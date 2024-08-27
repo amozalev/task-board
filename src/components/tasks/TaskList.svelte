@@ -5,9 +5,16 @@
 	export let listIdx = '';
 	export let name = '';
 	export let tasks = [];
+
+	const drop = (event) => {
+		const transferredDataString = event.dataTransfer.getData('text/plain');
+		const {fromListIdx, taskId} = JSON.parse(transferredDataString);
+
+		taskListStore.moveTask({fromListIdx, toListIdx: listIdx, taskId});
+	}
 </script>
 
-<div class="flex flex-col rounded bg-slate-200 p-2 min-h-0">
+<div class="flex flex-col rounded bg-slate-200 p-2 min-h-0" on:dragover|preventDefault={() => {}} on:drop={drop}>
 	<div class="flex justify-between items-center">
 		<span class="flex grow">
 			<h2>{name}</h2>

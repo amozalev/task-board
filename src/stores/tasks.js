@@ -113,6 +113,15 @@ const createStore = () => {
 
 				return list;
 			});
+		},
+		moveTask: ({ fromListIdx, toListIdx, taskId }) => {
+			update((list) => {
+				const taskIdx = list[fromListIdx].tasks.findIndex((task) => task.id === taskId);
+				const [task] = list[fromListIdx].tasks.splice(taskIdx, 1);
+				list[toListIdx].tasks.push(task);
+
+				return list;
+			});
 		}
 	};
 };

@@ -13,9 +13,14 @@
 		listIdx
 		);
 	}
+
+	const dragStart = (event) => {
+		const data = {fromListIdx: listIdx, taskId: task.id};
+		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+	}
 </script>
 
-<div class="flex-col bg-white rounded shadow-md p-2">
+<div class="flex-col bg-white rounded shadow-md p-2" draggable="true" on:dragstart={dragStart}>
 	<div class="flex">
 		<span class="text-xs py-0.5 p-0.5 rounded font-bold text-white mb-3 inline-block bg-blue-400">
 			{task.tag}
