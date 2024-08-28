@@ -1,3 +1,9 @@
+<script context="module">
+	import { writable } from 'svelte/store';
+
+	let hoveredListIdx = writable(null);
+</script>
+
 <script>
 	import { taskListStore } from '../../stores/tasks.js';
 	import TaskItem from './TaskItem.svelte';
@@ -8,13 +14,24 @@
 
 	const drop = (event) => {
 		const transferredDataString = event.dataTransfer.getData('text/plain');
-		const {fromListIdx, taskId} = JSON.parse(transferredDataString);
+		const { fromListIdx, taskId } = JSON.parse(transferredDataString);
 
-		taskListStore.moveTask({fromListIdx, toListIdx: listIdx, taskId});
-	}
+		taskListStore.moveTask({ fromListIdx, toListIdx: listIdx, taskId });
+		hoveredListIdx.set(null);
+	};
+
+	const onDragEnter = () => {
+		hoveredListIdx.set(listIdx);
+	};
 </script>
 
-<div class="flex flex-col rounded bg-slate-200 p-2 min-h-0" on:dragover|preventDefault={() => {}} on:drop={drop}>
+<div
+	class:hovering={$hoveredListIdx == listIdx}
+	class="flex flex-col rounded bg-slate-200 p-2 min-h-0 border-solid border border-slate-50"
+	on:dragover|preventDefault={() => {}}
+	on:drop={drop}
+	on:dragenter={onDragEnter}
+>
 	<div class="flex justify-between items-center">
 		<span class="flex grow">
 			<h2>{name}</h2>
