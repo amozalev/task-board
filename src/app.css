@@ -1,13 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-html {
-    display: flex;
-    height: 100%;
-    overflow-y: hidden;
-}
-
-.hovering {
-    border: 1px solid #daa773;
-}

@@ -23,6 +23,10 @@
 	const onDragEnter = () => {
 		hoveredListIdx.set(listIdx);
 	};
+
+	const deleteList = () => {
+		taskListStore.deleteList(listIdx);
+	}
 </script>
 
 <div
@@ -37,8 +41,8 @@
 			<h2>{name}</h2>
 		</span>
 		<span class="flex">
-			<button class="p-1">
-				<i class="fas fa-ellipsis-h"></i>
+			<button class="p-1" on:click={deleteList}>
+				<i class="fa fa-trash"></i>
 			</button>
 		</span>
 	</div>
@@ -52,3 +56,9 @@
 		<h4>Add card</h4>
 	</button>
 </div>
+
+<style>
+	.hovering {
+    border: 1px solid #daa773;
+	}
+</style>

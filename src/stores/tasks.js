@@ -94,7 +94,7 @@ const createStore = () => {
 		addList: () => {
 			update((list) => {
 				const listLen = list.length;
-				let lastId = list[listLen - 1].id;
+				let lastId = listLen > 0 ? list[listLen - 1].id : 0;
 				list.push({
 					id: ++lastId,
 					name: 'New list',
@@ -104,11 +104,18 @@ const createStore = () => {
 				return list;
 			});
 		},
+		deleteList: (listIdx) => {
+			update((list) => {
+				list.splice(listIdx, 1);
+				return list;
+			})
+		},
 		addTask: (listIdx) => {
 			update((list) => {
 				list[listIdx].tasks.push({
 					id: Math.floor(Math.random() * 1000),
-					title: 'New task'
+					title: 'New task',
+					tag: 'default'
 				});
 
 				return list;
